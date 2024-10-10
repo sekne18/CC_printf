@@ -6,13 +6,13 @@
 /*   By: jsekne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 09:18:38 by jsekne            #+#    #+#             */
-/*   Updated: 2024/10/09 16:32:20 by jsekne           ###   ########.fr       */
+/*   Updated: 2024/10/10 14:50:44 by jsekne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-void	ft_puthex(char c, int n, int *counter)
+void	ft_puthex(char c, unsigned int n, int *counter)
 {
 	int		i;
 	int		temp[14];
@@ -21,9 +21,7 @@ void	ft_puthex(char c, int n, int *counter)
 	get_base(c, base);
 	i = 0;
 	if (n == 0)
-		write(1, &base[0], 1);
-	if (n < 0)
-		write(1, "-", 1);
+		ft_putchar(base[0], counter);
 	while (n)
 	{
 		if (n < 0)
@@ -33,10 +31,7 @@ void	ft_puthex(char c, int n, int *counter)
 		n /= 16;
 	}
 	while (i > 0)
-	{
-		(*counter)++;
-		write(1, &base[temp[--i]], 1);
-	}
+		ft_putchar(base[temp[--i]], counter);
 }
 
 void	get_base(char c, char *base)
@@ -63,17 +58,18 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 void	ft_putvoid(void *p, int *counter)
 {
 	unsigned long long	n;
-	uintptr_t			converted;
 	int					i;
 	int					temp[16];
 	char				base[16];
 
-	converted = (uintptr_t) p;
-	n = converted;
+	n = (uintptr_t) p;
 	ft_memcpy(base, "0123456789abcdef", 16);
 	i = 0;
 	if (n == 0)
-		write(1, &base[0], 1);
+	{
+		ft_putstr("(nil)", counter);
+		return ;
+	}
 	while (n)
 	{
 		temp[i++] = n % 16;
@@ -81,8 +77,5 @@ void	ft_putvoid(void *p, int *counter)
 	}
 	ft_putstr("0x", counter);
 	while (--i >= 0)
-	{
-		(*counter)++;
-		ft_putchar(base[temp[i]]);
-	}
+		ft_putchar(base[temp[i]], counter);
 }

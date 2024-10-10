@@ -6,26 +6,29 @@
 /*   By: jsekne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 07:20:20 by jsekne            #+#    #+#             */
-/*   Updated: 2024/10/09 16:04:24 by jsekne           ###   ########.fr       */
+/*   Updated: 2024/10/10 14:19:11 by jsekne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	ft_putstr(char *str, int *counter)
 {
 	int	i;
 
+	if (!str)
+	{
+		ft_putstr("(null)", counter);
+		return ;
+	}
 	i = -1;
 	while (str[++i])
-	{
-		(*counter)++;
-		ft_putchar(str[i]);
-	}
+		ft_putchar(str[i], counter);
 }
 
-void	ft_putchar(char c)
+void	ft_putchar(char c, int *counter)
 {
+	(*counter)++;
 	write(1, &c, 1);
 }
 
@@ -52,10 +55,7 @@ void	ft_putnbr(int nb, int *counter)
 	if (is_neg)
 		res[i++] = '-';
 	while (i > 0)
-	{	
-		(*counter)++;
-		write(1, &res[--i], 1);
-	}
+		ft_putchar(res[--i], counter);
 }
 
 void	ft_putudec(unsigned int nb, int *counter)
@@ -81,8 +81,5 @@ void	ft_putudec(unsigned int nb, int *counter)
 	if (is_neg)
 		res[i++] = '-';
 	while (i > 0)
-	{	
-		(*counter)++;
-		write(1, &res[--i], 1);
-	}
+		ft_putchar(res[--i], counter);
 }
