@@ -11,13 +11,13 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -I. -c $< -o $@
 
-all: $(NAME) testing
+all: $(NAME) #testing
 
-test: test.o $(NAME) clean
-	$(CC) -o test test.o $(NAME)
+#test: test.o $(NAME) clean
+#	$(CC) -o test test.o $(NAME)
 
-test.o: test.c	
-	$(CC) $(CFLAGS) -I. -c $< -o $@
+#test.o: test.c	
+#	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 clean:
 	rm -f $(OBJS)

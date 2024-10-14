@@ -6,7 +6,7 @@
 /*   By: jsekne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 09:18:38 by jsekne            #+#    #+#             */
-/*   Updated: 2024/10/10 14:50:44 by jsekne           ###   ########.fr       */
+/*   Updated: 2024/10/14 08:45:28 by jans             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,7 @@ void	ft_puthex(char c, unsigned int n, int *counter)
 		ft_putchar(base[0], counter);
 	while (n)
 	{
-		if (n < 0)
-			temp[i++] = (n % 16) * -1;
-		else
-			temp[i++] = n % 16;
+		temp[i++] = n % 16;
 		n /= 16;
 	}
 	while (i > 0)

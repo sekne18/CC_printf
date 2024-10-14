@@ -6,12 +6,12 @@
 /*   By: jsekne <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 09:26:18 by jsekne            #+#    #+#             */
-/*   Updated: 2024/10/10 14:48:57 by jsekne           ###   ########.fr       */
+/*   Updated: 2024/10/14 08:42:27 by jans             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <stdlib.h>
